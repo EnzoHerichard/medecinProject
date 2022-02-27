@@ -39,9 +39,15 @@ class Medecin
      */
     private $rapport;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Visiteur::class, mappedBy="medecin")
+     */
+    private $visiteurs;
+
     public function __construct()
     {
         $this->rapport = new ArrayCollection();
+        $this->visiteurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -109,6 +115,36 @@ class Medecin
             // set the owning side to null (unless already changed)
             if ($rapport->getMedecin() === $this) {
                 $rapport->setMedecin(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Visiteur[]
+     */
+    public function getVisiteurs(): Collection
+    {
+        return $this->visiteurs;
+    }
+
+    public function addVisiteur(Visiteur $visiteur): self
+    {
+        if (!$this->visiteurs->contains($visiteur)) {
+            $this->visiteurs[] = $visiteur;
+            $visiteur->setMedecin($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVisiteur(Visiteur $visiteur): self
+    {
+        if ($this->visiteurs->removeElement($visiteur)) {
+            // set the owning side to null (unless already changed)
+            if ($visiteur->getMedecin() === $this) {
+                $visiteur->setMedecin(null);
             }
         }
 

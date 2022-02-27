@@ -34,6 +34,11 @@ class Visiteur
      */
     private $rapports;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=medecin::class, inversedBy="visiteurs")
+     */
+    private $medecin;
+
     public function __construct()
     {
         $this->rapports = new ArrayCollection();
@@ -94,6 +99,18 @@ class Visiteur
                 $rapport->setVisiteur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMedecin(): ?medecin
+    {
+        return $this->medecin;
+    }
+
+    public function setMedecin(?medecin $medecin): self
+    {
+        $this->medecin = $medecin;
 
         return $this;
     }
