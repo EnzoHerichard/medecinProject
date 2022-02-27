@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\RapportRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @ORM\Entity(repositoryClass=RapportRepository::class)
@@ -19,6 +21,7 @@ class Rapport
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=15, max=300, minMessage="Ce bilan est bien trop court" )
      */
     private $bilan;
 

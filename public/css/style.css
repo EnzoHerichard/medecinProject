@@ -22,3 +22,16 @@ body{
     width: 6%;
     margin-right: 2%;
 }
+
+.input_form{
+    width : 20%;
+   
+}
+
+label{
+    font-size: 20px;
+    color: #143c6c;
+}
+.create_button{
+    margin-top: 1%;
+}
