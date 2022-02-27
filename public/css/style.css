@@ -1,0 +1,37 @@
+body{
+    background-color: #64a4d4;
+} 
+
+/* Taille navbar */
+.navbar{
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-size: 150%;
+        
+}
+/* Couleur texte navbar  */
+#menu a{
+    color:#143c6c;
+}
+#menu a:hover{
+    color: #64a4d4;
+}
+/* Taille logo  */
+.logo{
+    height: 6%;
+    width: 6%;
+    margin-right: 2%;
+}
+
+.input_form{
+    width : 20%;
+   
+}
+
+label{
+    font-size: 20px;
+    color: #143c6c;
+}
+.create_button{
+    margin-top: 1%;
+}

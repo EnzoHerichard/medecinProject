@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formRapport 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    {{ form_start(formRapport) }}
+        
+        
+        {{ form_row(formRapport.medecin,{
+            'label': 'Médecin ayant pris en charger le patient'
+        }) }}
+
+        {{ form_row(formRapport.bilan,{'attr' : {'placeholder':'Symptomes, Médicaments préscrits, suivi...'}, 'label' : 'Bilan de la visite médicale'}) }}
+        
+        {{ form_row(formRapport.visiteur,{
+            'label': 'Patient de la visite médicale'
+        }) }}
+        
+        <button type="submit" class="btn btn-success create_button"> 
+            
+                Enregistrer
+        
+        </button>
+    {{ form_end(formRapport) }}
+{% endblock %}
