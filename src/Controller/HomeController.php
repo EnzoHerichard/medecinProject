@@ -7,7 +7,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Rapport;
+use App\Entity\Visiteur;
+use App\Repository\VisiteurRepository;
+use App\Repository\RapportRepository;
 use App\Form\RapportType;
+use App\Form\ShowType;
 use Doctrine\ORM\EntityManagerInterface;
 
 class HomeController extends AbstractController
@@ -51,10 +55,38 @@ class HomeController extends AbstractController
         
     }
     /**
-     * @Route("/Rapport/show/{id}", name="rapport_show")
+     * @Route("/Rapport/preshow", name="rapport_preshow")
+     * @Route("/Rapport/{id}/show", name="rapport_show")
      */
-    public function show()
+    public function getIdToShow(Visiteur $visiteur = null,Request $request)
     {
+        if(!$visiteur){
+            $visiteur = new Visiteur();
+        }
+        
+        $form = $this->createForm(ShowType::class,null, [
+            'data_class' => Rapport::class
+        ]);
+        $form->handleRequest($request);
+        
+        $id = null;
+        if($form->isSubmitted()){
+            $id = $form->getData()->getVisiteur()->getId();
+            $visiteur = $form->getData()->getVisiteur();
 
+            return $this->redirectToRoute('rapport_show', [
+                'visiteur' => $visiteur,
+                'id' => $id,
+            ]);
+        }
+            
+        return $this->render('home/show.html.twig', [
+            'formVisiteur' => $form->createView(),
+            'haveid' => $visiteur->getId() !== null,
+            'visiteur' => $visiteur
+        ]); 
+        
     }
+    
+    
 }

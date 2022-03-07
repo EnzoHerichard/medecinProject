@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+ {% form_theme formVisiteur 'bootstrap_4_layout.html.twig' %} 
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<h1 id="title_rapport">Voir un rapport de visite</h1>
+       
+       {{ form_start(formVisiteur) }}
+        
+        {{ form_row(formVisiteur.visiteur,{
+            'label': 'Patient concerné par la visite médicale'
+        }) }}
+        
+        <button type="submit" class="btn btn-success create_button"> 
+            
+                Enregistrer
+        
+        </button>
+        {{ form_end(formVisiteur) }}
+
+{% if haveid %}
+<div class="row">
+        {% for rapport in visiteur.rapports %}
+                
+        <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                                <h5 class="card-title">{{ rapport.visiteur.nom }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ rapport.date | date('d/m/Y') }}</h6>
+                                <p class="card-text">{{ rapport.bilan }}</p>
+                        </div>
+                </div>
+        </div>
+                
+        {% endfor %} 
+</div>
+{% endif %}
+{% endblock %}

@@ -30,12 +30,12 @@ class Visiteur
     private $prenom;
 
     /**
-     * @ORM\OneToMany(targetEntity=rapport::class, mappedBy="visiteur")
+     * @ORM\OneToMany(targetEntity=Rapport::class, mappedBy="visiteur")
      */
     private $rapports;
 
     /**
-     * @ORM\ManyToOne(targetEntity=medecin::class, inversedBy="visiteurs")
+     * @ORM\ManyToOne(targetEntity=Medecin::class, inversedBy="visiteurs")
      */
     private $medecin;
 
@@ -81,7 +81,9 @@ class Visiteur
         return $this->rapports;
     }
 
-    public function addRapport(rapport $rapport): self
+   
+
+    public function addRapport(Rapport $rapport): self
     {
         if (!$this->rapports->contains($rapport)) {
             $this->rapports[] = $rapport;
@@ -91,7 +93,7 @@ class Visiteur
         return $this;
     }
 
-    public function removeRapport(rapport $rapport): self
+    public function removeRapport(Rapport $rapport): self
     {
         if ($this->rapports->removeElement($rapport)) {
             // set the owning side to null (unless already changed)
@@ -103,12 +105,12 @@ class Visiteur
         return $this;
     }
 
-    public function getMedecin(): ?medecin
+    public function getMedecin(): ?Medecin
     {
         return $this->medecin;
     }
 
-    public function setMedecin(?medecin $medecin): self
+    public function setMedecin(?Medecin $medecin): self
     {
         $this->medecin = $medecin;
 
