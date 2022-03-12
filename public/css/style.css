@@ -35,10 +35,22 @@ label{
     font-size: 20px;
     color: #143c6c;
 }
-#title_rapport{
+#title_rapport,#title_choose{
     color: #143c6c;
     font-weight: bold;
 }
+#title_show{
+    color: #143c6c;
+    font-weight: bold;
+    margin-top: 1%;
+}
 .card{
     margin-bottom: 3%;
+}
+#choose_visiteur{
+    width: 25%;
+    margin-bottom: 1%;
+}
+.show-card{
+    margin-top: 2%;
 }

@@ -33,20 +33,19 @@ class HomeController extends AbstractController
         if(!$rapport){
             $rapport = new Rapport();
         }
+        //Création du form
         $form = $this->createForm(RapportType::class,$rapport);
                 
         $form->handleRequest($request);
 
+        //si valide on ajoute la date du jour au rapport et on envoie en bdd
         if($form->isSubmitted() && $form->isValid()) {
             if(!$rapport->getId()){
                 $rapport->setDate(new \DateTime());
             }
             
-
             $manager-> persist($rapport);
             $manager-> flush();
-
-            
         }
             return $this->render('home/create.html.twig', [
                 'formRapport' => $form->createView()
@@ -58,18 +57,21 @@ class HomeController extends AbstractController
      * @Route("/Rapport/preshow", name="rapport_preshow")
      * @Route("/Rapport/{id}/show", name="rapport_show")
      */
-    public function getIdToShow(Visiteur $visiteur = null,Request $request)
+    public function Show(Visiteur $visiteur = null,Request $request)
     {
         if(!$visiteur){
             $visiteur = new Visiteur();
         }
         
+        //Création du form
         $form = $this->createForm(ShowType::class,null, [
             'data_class' => Rapport::class
         ]);
         $form->handleRequest($request);
         
         $id = null;
+
+        //si valide on recupere l'id et le visiteur et on renvoie vers la page d'affichage
         if($form->isSubmitted()){
             $id = $form->getData()->getVisiteur()->getId();
             $visiteur = $form->getData()->getVisiteur();
@@ -79,7 +81,8 @@ class HomeController extends AbstractController
                 'id' => $id,
             ]);
         }
-            
+        
+        
         return $this->render('home/show.html.twig', [
             'formVisiteur' => $form->createView(),
             'haveid' => $visiteur->getId() !== null,

@@ -18,7 +18,9 @@ class RapportType extends AbstractType
     {
         //Création du formulaire
         $builder
+            //Ajout d'un textArea
             ->add('bilan',TextareaType::class,array('attr' => array('class'=> 'input_form')))
+            
             //On ajoute des listes déroulantes qui prennent comme valeurs les visiteurs et les medecins
             ->add('visiteur', EntityType::class, [
                 'class' => Visiteur::class,
