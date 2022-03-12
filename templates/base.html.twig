@@ -17,10 +17,10 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
+            <div class="container">
                 <img src="{{ asset('images/logo.png') }}" class="logo">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
 
             <div class="collapse navbar-collapse" id="navbarColor01">
@@ -34,7 +34,7 @@
                 <a class="nav-link" href="{{ path('rapport_create') }}">Créer un rapport</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Voir un rapport</a>
+                <a class="nav-link" href="{{ path('rapport_preshow')}}">Voir un rapport</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="#">Modifier un rapport</a>
@@ -42,7 +42,7 @@
             </ul>
             </div>
         </nav>
-    <div class="container-fluid">
+    <div class="container">
         {% block body %}
         {% endblock %}
     </div>

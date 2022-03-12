@@ -24,14 +24,33 @@ body{
 }
 
 .input_form{
-    width : 20%;
-   
+    width : 25%;
+    margin-bottom: 1%;
 }
-
+#rapport_medecin, #rapport_visiteur{
+    width: 25%;
+    margin-bottom: 1%;
+}
 label{
     font-size: 20px;
     color: #143c6c;
 }
-.create_button{
+#title_rapport,#title_choose{
+    color: #143c6c;
+    font-weight: bold;
+}
+#title_show{
+    color: #143c6c;
+    font-weight: bold;
     margin-top: 1%;
+}
+.card{
+    margin-bottom: 3%;
+}
+#choose_visiteur{
+    width: 25%;
+    margin-bottom: 1%;
+}
+.show-card{
+    margin-top: 2%;
 }
